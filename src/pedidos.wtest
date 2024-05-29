@@ -1,0 +1,20 @@
+import pedidos.*
+import dependencias.*
+import Rodados.*
+
+const cachito = new ChevroletCorsa(color = rojo)
+
+test "Comprobando que Cachito pueda satisfacer un pedido de 960 kms con tiempo maximo de 8 horas para 4 pasajeros con los colores incompatibles de azul y negro" {
+	const pedido = new Pedido(distanciaARecorrer = 960, tiempoMaximo = 8, cantidadDePasajeros = 4, coloresIncompatibles = [azul, negro])
+	assert.that(pedido.puedeSatisfacer(cachito))
+}
+
+test "Comprobando que Cachito no pueda satisfacer un pedido de 960 kms con tiempo maximo de 8 horas para 6 pasajeros con los colores incompatibles de azul, negro y rojo" {
+	const pedido = new Pedido(distanciaARecorrer = 960, tiempoMaximo = 8, cantidadDePasajeros = 6, coloresIncompatibles = [azul, negro, rojo])
+	assert.notThat(pedido.puedeSatisfacer(cachito))
+}
+
+test "La misma comprobación que antes pero cambiando el tiempo maximo a 6 horas"{
+	const pedido = new Pedido(distanciaARecorrer = 960, tiempoMaximo = 6, cantidadDePasajeros = 6, coloresIncompatibles = [azul, negro, rojo])
+	assert.notThat(pedido.puedeSatisfacer(cachito))
+}
